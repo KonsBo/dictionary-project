@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Results from "./Results";
+import Photos from "./Photos";
 import "./Dictionary.css";
 
 export default function Dictionary(props) {
   let [keyword, setKeyword] = useState(props.defaultKeyword);
+  let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
-  let [results, setResults] = useState({});
+  let [photos, setPhotos] = useState(null);
 
-  function handleResponse(response) {
-    setResults(response.data);
+  function handleDictionResponse(response) {
+    setResults(response.data[0]);
   }
-  function search() {
-    let apiKey = "fo0aeaadb1171c3bat01accf9c25f94b";
-    let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
 
-    axios.get(apiUrl).then(handleResponse);
+  function handlePexelsResponse(response) {
+    setPhotos(response.data.photos);
+  }
+
+  function search() {
+    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+    axios.get(apiUrl).then(handleDictionResponse);
+
+    let pexelsApiKey =
+      "qZ3YwS0lOF3SCfeE4TK5AUxPIMDzVKZ3CY56QIDddJ7L3IfChDvmtCqY";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=9`;
+    let headers = { Authorization: ` ${pexelsApiKey}` };
+    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
@@ -31,6 +42,7 @@ export default function Dictionary(props) {
     setLoaded(true);
     search();
   }
+
   if (loaded) {
     return (
       <div className="Dictionary">
@@ -39,18 +51,16 @@ export default function Dictionary(props) {
           <form onSubmit={handleSubmit}>
             <input
               type="search"
-              placeholder="Enter a word..."
               onChange={handleKeywordChange}
-              id="searchEngine"
               defaultValue={props.defaultKeyword}
             />
           </form>
           <div className="hint">
-            you can type words like: music, yoga, happiness, awsomeness..
+            suggested words: sunset, wine, yoga, plant...
           </div>
         </section>
-
         <Results results={results} />
+        <Photos photos={photos} />
       </div>
     );
   } else {

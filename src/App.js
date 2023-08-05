@@ -13,7 +13,12 @@ export default function App() {
           <Dictionary defaultKeyword="yoga" />
         </main>
         <footer className="App-footer">
-          <small>Coded by KonBo</small>
+          <div className="footer">
+            <img src={logo} className="footer-logo img-fluid " alt="logo" />
+            <small>
+              Coded by <em>KonBo</em>
+            </small>
+          </div>
         </footer>
       </div>
     </div>
