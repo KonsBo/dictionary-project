@@ -16,7 +16,10 @@ export default function App() {
           <div className="footer">
             <img src={logo} className="footer-logo img-fluid " alt="logo" />
             <small>
-              Coded by <em>KonBo</em>
+              Coded by <em>KonBo</em> | open-sourced on{" "}
+              <a href="https://github.com/KonsBo/dictionary-project">Github</a>{" "}
+              | and hosted on{" "}
+              <a href="https://app-dictionary-project.netlify.app/">Netlify</a>
             </small>
           </div>
         </footer>
