@@ -14,7 +14,7 @@ a {
 }
 
 .App-logo {
-  max-width: 110px;
+  max-width: 55px;
   display: block;
   margin: 0 auto;
   opacity: 0.6;
@@ -38,10 +38,34 @@ a {
   font-weight: bold;
 }
 .App-footer .footer-logo {
-  max-width: 15px;
-  opacity: 0.7;
+  width: 15px;
   margin-right: 5px;
+  border: 1px solid rgb(29, 39, 152);
 }
 .App-footer a {
   text-decoration: none !important;
+  font-weight: bold;
+}
+
+.App .icons {
+  margin: 20px auto 30px;
+  text-align: center;
+  width: 80px;
+  border: 1px solid #bab4b3;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  background: linear-gradient(to right, #beb9b4 0%, #a6cde8 100%);
+  color: rgb(245, 199, 199);
+}
+.App .icon-right {
+  font-size: large;
+}
+
+.App .icon-middle {
+  font-size: xx-large;
+}
+.App .icon-left {
+  font-size: small;
+}
+.App .icon-bottom {
+  font-size: small;
 }
